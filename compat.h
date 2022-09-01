@@ -27,29 +27,28 @@
 
 typedef u_int SOCKET;
 #ifdef __APPLE__
-#define MSG_NOSIGNAL        0
+#define MSG_NOSIGNAL 0
 #endif
 #ifdef WIN32
-#define MSG_NOSIGNAL        0
-#define MSG_DONTWAIT        0
+#define MSG_NOSIGNAL 0
+#define MSG_DONTWAIT 0
 typedef int socklen_t;
 #else
 #include "errno.h"
-#define WSAGetLastError()   errno
-#define WSAEINVAL           EINVAL
-#define WSAEALREADY         EALREADY
-#define WSAEWOULDBLOCK      EWOULDBLOCK
-#define WSAEMSGSIZE         EMSGSIZE
-#define WSAEINTR            EINTR
-#define WSAEINPROGRESS      EINPROGRESS
-#define WSAEADDRINUSE       EADDRINUSE
-#define WSAENOTSOCK         EBADF
-#define INVALID_SOCKET      (SOCKET)(~0)
-#define SOCKET_ERROR        -1
+#define WSAGetLastError() errno
+#define WSAEINVAL EINVAL
+#define WSAEALREADY EALREADY
+#define WSAEWOULDBLOCK EWOULDBLOCK
+#define WSAEMSGSIZE EMSGSIZE
+#define WSAEINTR EINTR
+#define WSAEINPROGRESS EINPROGRESS
+#define WSAEADDRINUSE EADDRINUSE
+#define WSAENOTSOCK EBADF
+#define INVALID_SOCKET (SOCKET)(~0)
+#define SOCKET_ERROR -1
 #endif
 
-inline int myclosesocket(SOCKET& hSocket)
-{
+inline int myclosesocket(SOCKET &hSocket) {
     if (hSocket == INVALID_SOCKET)
         return WSAENOTSOCK;
 #ifdef WIN32
@@ -60,7 +59,6 @@ inline int myclosesocket(SOCKET& hSocket)
     hSocket = INVALID_SOCKET;
     return ret;
 }
-#define closesocket(s)      myclosesocket(s)
-
+#define closesocket(s) myclosesocket(s)
 
 #endif

@@ -4,3 +4,7 @@ dnsstats.log
 build/
 .cache/
 compile_commands.json
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
